@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import Axios from '../lib/Axios';
 // import { setHeaderToken } from '../lib/setHeaderToken';
 import { checkAuthToken } from '../lib/checkAuthToken';
+import { useNavigate } from 'react-router-dom';
 
 export const registerUser = createAsyncThunk(
     'users/registerUser',
@@ -37,7 +38,25 @@ export const loginUser = createAsyncThunk(
     }
 );
 
-// export const logoutUser = createAsyncThunk(
+export const logoutUser = createAsyncThunk(
+    'users/logoutUser',
+    async (data, { rejectWithValue }) => {
+        try {
+
+            //logout without axios call
+            localStorage.removeItem('jwtToken');
+
+            checkAuthToken();
+
+
+            return {
+                message: 'Logout success',
+            };
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+);
 
 export const analyzeQuiz = createAsyncThunk(
     'users/analyzeQuiz',
@@ -127,8 +146,26 @@ export const usersSlice = createSlice({
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload.message;
-            }
-        );
+            })
+            .addCase(logoutUser.pending, (state, action) => {
+                state.isLoading = true;
+                state.isError = false;
+            })
+            .addCase(logoutUser.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isError = false;
+                state.message = action.payload.message;
+                state.token = '';
+                state.isLoggedIn = false;
+                state.username = '';
+                state.email = '';
+                state._id = '';
+            })
+            .addCase(logoutUser.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload.message;
+            })
 
     }
 });

@@ -79,15 +79,7 @@ function Quiz() {
 
 
     const onSubmit = async (data) => {
-        // the data object will have the following structure:
-        // {
-        //     "responses": [
-        //         {
-        //             "question": "What do you value the most in life?",
-        //             "response": "I value family and personal growth the most in my life."
-        //         },
 
-        //     ]
         for (let i = 0; i < questions.length; i++) {
             data.responses[i].question = questions[i]
         }
@@ -108,30 +100,33 @@ function Quiz() {
 
 
     return (
-
-        <div className="flex flex-col items-center justify-center h-screen">
-
+        <div className="flex flex-col items-center justify-center min-h-screen pt-20 pb-10 px-4 md:px-0">
             {
                 !users.isQuizAnalyzed ? (
-                    <div>
+                    <div className="w-full max-w-xl bg-white rounded-lg shadow-md p-6">
                         <h1 className="text-2xl font-bold mb-4 text-center">Quiz</h1>
-                        <form className="flex flex-col items-center" onSubmit={handleSubmit(onSubmit)}>
+                        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
                             {questions.map((question, index) => {
                                 let questionNumber = index + 1;
                                 return (
-                                    <div key={index} className="flex flex-col mb-4">
-                                        <label className="mb-2" htmlFor={questionNumber}>{question}</label>
-                                        <input className="border border-gray-400 p-2" type="text" id={questionNumber} {...register(`responses.${index}.response`, { required: true, maxLength: 500 })} />
-                                        {errors.responses && errors.responses[index] && errors.responses[index].response && <span className="text-red-500">This field is required and has a maximum length of 500 characters</span>}
+                                    <div key={index} className="flex flex-col">
+                                        <label className="mb-2 font-semibold" htmlFor={questionNumber}>{question}</label>
+                                        <input className="border border-gray-300 p-2 rounded" type="text" id={questionNumber} {...register(`responses.${index}.response`, { required: true, maxLength: 500 })} />
+                                        {errors.responses && errors.responses[index] && errors.responses[index].response && <span className="text-red-500 text-sm">This field is required and has a maximum length of 500 characters</span>}
                                     </div>
                                 )
                             })}
-                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" disabled={users.loading}>Submit</button>
+                            <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" disabled={users.loading}>Submit</button>
                         </form>
-                        {users.loading && <p className="text-blue-500">Loading...</p>}
+                        {users.isLoading && (
+                            <div className="flex justify-center items-center mt-4">
+                                <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-blue-500"></div>
+                                <p className="text-blue-500 ml-2">Loading...</p>
+                            </div>
+                        )}
                     </div>
                 ) : (
-                    <div>
+                    <div className="w-full max-w-xl bg-white rounded-lg shadow-md p-6">
                         <h1 className="text-3xl font-bold mb-4 text-center">Result</h1>
                         {
                             users.quizResults.map((result, index) => {
@@ -140,12 +135,9 @@ function Quiz() {
                                 )
                             })
                         }
-
-
-
                     </div>
-
                 )
+
             }
         </div>
     )

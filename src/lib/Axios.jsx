@@ -1,9 +1,7 @@
-import axios from "axios"
-
-// require('dotenv').config();
+import axios from "axios";
 
 const Axios = axios.create({
-    baseURL: "http://localhost:4000/api",
+    baseURL: import.meta.env.VITE_AXIOS === 'development' ? 'http://localhost:4000/api' : '/api',
     headers: {
         "Content-type": "application/json"
     }
@@ -12,10 +10,6 @@ const Axios = axios.create({
 export default Axios;
 
 
-// // require('dotenv').config();
-
 // export const Axios = axios.create({
-//     baseURL: process.env.REACT_APP_BASE_URL
+//     baseURL: import.meta.env.REACT_APP_AXIOS === 'development' ? 'htttp://localhost:4000/api' : '/api',
 // })
-
-// export default Axios;

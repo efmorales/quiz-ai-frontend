@@ -30,7 +30,7 @@ function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
-        console.log(data);
+        // console.log(data);
         dispatch(loginUser(data));
         
         
@@ -86,7 +86,7 @@ function Login() {
           </form>
           <div className="flex justify-between items-center mt-4">
             <span>Don't have an account? <Link to="/register" className="text-blue-500">Register</Link></span>
-            <span><Link to="/forgot-password" className="text-blue-500">Forgot Password?</Link></span>
+
           </div>
         </div>
       </div>

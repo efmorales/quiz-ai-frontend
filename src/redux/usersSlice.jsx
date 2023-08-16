@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import Axios from '../lib/Axios';
 // import { setHeaderToken } from '../lib/setHeaderToken';
 import { checkAuthToken } from '../lib/checkAuthToken';
-import { useNavigate } from 'react-router-dom';
 
 export const registerUser = createAsyncThunk(
     'users/registerUser',

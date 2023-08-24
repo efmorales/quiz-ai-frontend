@@ -159,6 +159,7 @@ export const usersSlice = createSlice({
                 state.username = '';
                 state.email = '';
                 state._id = '';
+                state.quizResults = [];
             })
             .addCase(logoutUser.rejected, (state, action) => {
                 state.isLoading = false;

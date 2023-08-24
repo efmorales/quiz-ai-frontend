@@ -131,7 +131,11 @@ function Quiz() {
                         {
                             users.quizResults.map((result, index) => {
                                 return (
-                                    <p key={index} className="text-center text-xl">{result}</p>
+                                    <div
+                                        key={index}
+                                        className="text-center text-xl custom-content"
+                                        dangerouslySetInnerHTML={{ __html: result }}
+                                    ></div>
                                 )
                             })
                         }

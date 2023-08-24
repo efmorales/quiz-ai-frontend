@@ -3,6 +3,7 @@ import { Link, Outlet } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { logoutUser } from './redux/usersSlice';
+import philosophyBG from './pages/philosophyBG.png'
 
 const Layout = () => {
 
@@ -17,7 +18,7 @@ const Layout = () => {
     navigate("/login");
 
   }
-  
+
   return (
     <div className="flex flex-col min-h-screen">
       <nav className="bg-gray-800">
@@ -55,7 +56,12 @@ const Layout = () => {
         </div>
       </nav>
 
-      <main className="flex-grow">
+      <main className="flex-grow"
+        style={{
+          backgroundImage: `url(${philosophyBG}), linear-gradient(to right, #3b82f6, #9333ea)`, // Image over gradient
+          backgroundSize: 'cover', // Cover the viewport
+          backgroundPosition: 'center', // Center the image
+        }}>
         <Outlet />
       </main>
 
@@ -67,7 +73,7 @@ const Layout = () => {
     </div>
 
 
-                  
+
 
   )
 

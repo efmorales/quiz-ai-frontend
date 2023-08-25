@@ -160,6 +160,7 @@ export const usersSlice = createSlice({
                 state.email = '';
                 state._id = '';
                 state.quizResults = [];
+                state.isQuizAnalyzed = false;
             })
             .addCase(logoutUser.rejected, (state, action) => {
                 state.isLoading = false;

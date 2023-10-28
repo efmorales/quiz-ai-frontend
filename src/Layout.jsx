@@ -27,7 +27,7 @@ const Layout = () => {
 
             <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
               <div className="flex-shrink-0 flex items-center">
-                <Link to="/" className="text-white font-bold text-2xl">AI Philosophy Navigator</Link>
+                <Link to="/" className="text-white font-bold text-2xl">Philosofinder AI</Link>
               </div>
             </div>
 
@@ -43,7 +43,7 @@ const Layout = () => {
                     </>
                   ) : (
                     <>
-                      <Link to="/login" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login</Link>
+                      <Link to="/login" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Log in</Link>
                       <Link to="/register" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Register</Link>
                     </>
                   )}

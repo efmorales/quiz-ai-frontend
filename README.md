@@ -10,16 +10,16 @@ To get the project up and running on your local machine, follow these steps:
 2. Navigate to the project directory
 3. Install the required dependencies using npm:
 
-bash
+```bash
 npm install
-
+```
 
 ## Usage
 After installation, you can start the development server with:
 
-bash
+```bash
 npm start
-
+```
 
 Then, open your browser and navigate to `http://localhost:3000` to see the application in action.
 
